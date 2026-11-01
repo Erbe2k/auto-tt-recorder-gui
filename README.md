@@ -1,6 +1,6 @@
 # Auto-TT-Recorder GUI
 
-This is a forx from [text](https://github.com/luckytyphlosion/auto-tt-recorder-gui/releases)
+This is a fork from [DOWNLOAD 1.4.1](https://github.com/luckytyphlosion/auto-tt-recorder-gui/releases)
 
 This new fork will implement:
 - new choice Worldwide, Europe, Country PAL ONLY (1.4.1a)
