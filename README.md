@@ -1,7 +1,12 @@
 # Auto-TT-Recorder GUI
 
-# DOWNLOAD HERE
-[===> **Download** <===](https://github.com/luckytyphlosion/auto-tt-recorder-gui/releases)
+This is a forx from [text](https://github.com/luckytyphlosion/auto-tt-recorder-gui/releases)
+
+This new fork will implement:
+- new choice Worldwide, Europe, Country PAL ONLY (1.4.1a)
+- transition between tops for example between Country to European to Worldwide (1.4.2)
+- improvement of the GUI
+
 
 # JOIN DISCORD FOR UPDATES
 [Discord link](https://discord.gg/6FqfpnqP57)

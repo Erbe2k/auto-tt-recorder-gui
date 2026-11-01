@@ -287,18 +287,46 @@ export const COUNTRY_FLAG_IDS = makeReadonlyArraySet(Object.keys(COUNTRY_LOCATIO
 
 const COUNTRY_LOCATIONS_NO_FILLME = Object.keys(COUNTRY_LOCATION_FLAG_IDS_BY_NAME_NO_FILLME);
 
+// Keep this list in sync with countries that have a non-empty globe_position
+// in auto-tt-recorder/constants/customtop10.py. Locations without coordinates
+// cannot be selected for manually supplied Gecko Top 10 codes.
+const GECKO_CODE_COUNTRY_LOCATIONS = [
+  "Japan", "Scotland", "Wales", "Anguilla", "Antigua and Barbuda", "Argentina", "Aruba", "Bahamas",
+  "Barbados", "Belize", "Bolivia", "Brazil", "British Virgin Islands", "Canada", "Cayman Islands", "Chile",
+  "Colombia", "Costa Rica", "Dominica", "Dominican Republic", "Ecuador", "El Salvador", "French Guiana",
+  "Grenada", "Guadeloupe", "Guatemala", "Guyana", "Haiti", "Honduras", "Jamaica", "Martinique", "Mexico",
+  "Montserrat", "Netherlands Antilles", "Nicaragua", "Panama", "Paraguay", "Peru", "St. Kitts and Nevis",
+  "St. Lucia", "St. Vincent and Grenadines", "Suriname", "Trinidad and Tobago", "Turks and Caicos Islands",
+  "USA", "Uruguay", "U.S. Virgin Islands", "Venezuela", "Kosovo", "Northern Cyprus", "Albania", "Australia",
+  "Austria", "Belgium", "Bosnia and Herzegovina", "Botswana", "Bulgaria", "Croatia", "Cyprus", "Czechia",
+  "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy",
+  "Latvia", "Lesotho", "Liechtenstein", "Lithuania", "Luxembourg", "North Macedonia", "Malta", "Mozambique",
+  "Namibia", "Netherlands", "New Zealand", "Norway", "Poland", "Portugal", "Romania", "Russia", "Serbia",
+  "Slovakia", "Slovenia", "South Africa", "Spain", "Eswatini", "Sweden", "Switzerland", "Turkey",
+  "United Kingdom", "Zambia", "Zimbabwe", "Azerbaijan", "Mauritania", "Mali", "Niger", "Chad", "Sudan",
+  "Eritrea", "Djibouti", "Somalia", "Isle of Man", "Taiwan", "South Korea", "Hong Kong", "Macao",
+  "Indonesia", "Singapore", "Thailand", "Philippines", "Malaysia", "China", "United Arab Emirates", "India",
+  "Egypt", "Oman", "Qatar", "Kuwait", "Saudi Arabia", "Syria", "Bahrain", "Jordan", "Equatorial Guinea",
+  "Puerto Rico", "Greenland"
+] as const;
+
+export const TOP_10_GECKO_CODE_LOCATION_COUNTRIES = makeReadonlyArraySet(GECKO_CODE_COUNTRY_LOCATIONS);
+
 export type Top10LocationCountry = ValidValues<typeof COUNTRY_LOCATIONS>;
 export type Top10LocationCountryFlagId = ValidValues<typeof COUNTRY_FLAG_IDS>;
 
-export function Top10LocationCountryInput(props: {top10LocationRegion: Top10LocationRegion}) {
+export function Top10LocationCountryInput(props: {top10LocationRegion: Top10LocationRegion, geckoCodeLocation?: boolean}) {
   const isValueOrFILLMEIsValue = isValueOrFILLMEIsValueMaker();
+  const countryLocations = props.geckoCodeLocation ? GECKO_CODE_COUNTRY_LOCATIONS : COUNTRY_LOCATIONS_NO_FILLME;
 
   return (
     <div className="grid-contents">
-      <label className="start-label" htmlFor="top-10-location-country-location">Country Location: </label>
+      <label className="start-label" htmlFor="top-10-location-country-location">
+        {props.geckoCodeLocation ? "Country with known globe position: " : "Country Location: "}
+      </label>
       <div className="start-label-contents">
         <DeselectableDropdown name="top-10-location-country-location" nameAsId={true} errorBelow={true}>
-          {COUNTRY_LOCATIONS_NO_FILLME.map((countryLocation) => (
+          {countryLocations.map((countryLocation) => (
             <option value={countryLocation} key={countryLocation}>{countryLocation}</option>
           ))}
         </DeselectableDropdown>

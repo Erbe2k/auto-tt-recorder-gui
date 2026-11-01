@@ -412,16 +412,10 @@ export class AutoTTRecConfigExporter {
       let top10GeckoCodeLocationRegion = this.getFormDataChoiceValue("top-10-gecko-code-location-region");
       if (top10GeckoCodeLocationRegion === "worldwide") {
         top10Location = "worldwide";
-      } else if (top10GeckoCodeLocationRegion === "regional") {
-        if (top10LocationRegion === "worldwide") {
-          top10Location = "regional";
-        } else if (top10LocationRegion === "regional" && top10LocationRegionalLocation !== "<FILLME>") {
-          top10Location = top10LocationRegionalLocation;
-        } else if (top10LocationRegion === "country" && top10LocationCountryLocation !== "<FILLME>") {
-          top10Location = top10LocationCountryLocation;
-        } else {
-          top10Location = "regional";
-        }
+      } else if (top10GeckoCodeLocationRegion === "europe") {
+        top10Location = "Europe";
+      } else if (top10GeckoCodeLocationRegion === "country") {
+        top10Location = top10LocationCountryLocation === "<FILLME>" ? "country" : top10LocationCountryLocation;
       } else {
         top10Location = "<FILLME>";
       }

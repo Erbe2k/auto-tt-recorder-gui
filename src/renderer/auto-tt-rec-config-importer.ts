@@ -4,7 +4,7 @@ import { EncodeSizeUnit } from "./components/form_components/EncodeSizeInput";
 import { SZSSource } from "./components/form_components/SZSSourceInput";
 import { Top10LocationRegion } from "./components/form_components/Top10LocationInput";
 
-import { Top10LocationCountry, COUNTRY_LOCATIONS, COUNTRY_LOCATION_NAMES_BY_FLAG_ID, COUNTRY_FLAG_IDS } from "./components/form_components/Top10LocationCountryInput";
+import { Top10LocationCountry, COUNTRY_LOCATIONS, COUNTRY_LOCATION_NAMES_BY_FLAG_ID, COUNTRY_FLAG_IDS, TOP_10_GECKO_CODE_LOCATION_COUNTRIES } from "./components/form_components/Top10LocationCountryInput";
 import { Top10LocationRegional, REGIONAL_LOCATIONS, TOP_10_LOCATION_REGIONAL_TO_FULL_NAME } from "./components/form_components/Top10LocationRegionalInput";
 
 import { INPUT_DISPLAYS } from "./components/form_components/InputDisplayInput";
@@ -901,8 +901,27 @@ export class AutoTTRecConfigImporter {
       if (top10LocationLower === "ww" || top10LocationLower === "worldwide") {
         top10GeckoCodeLocationRegion = "worldwide";
         isDefinitivelyWorldwide = true;
+      } else if (top10LocationLower === "regional" || top10LocationLower === "europe" || top10LocationLower === "eu") {
+        top10GeckoCodeLocationRegion = "europe";
+        isDefinitivelyWorldwide = false;
+      } else if (top10LocationLower === "country") {
+        top10GeckoCodeLocationRegion = "country";
+        isDefinitivelyWorldwide = false;
       } else {
-        top10GeckoCodeLocationRegion = "regional";
+        let countryLocation = top10Location;
+        const upperFlagId = top10Location.toUpperCase();
+        if (isInSet(COUNTRY_FLAG_IDS.set, upperFlagId)) {
+          countryLocation = COUNTRY_LOCATION_NAMES_BY_FLAG_ID[upperFlagId];
+        }
+
+        if (isInSet(TOP_10_GECKO_CODE_LOCATION_COUNTRIES.set, countryLocation)) {
+          top10GeckoCodeLocationRegion = "country";
+        } else {
+          top10GeckoCodeLocationRegion = "europe";
+          if (isInSet(COUNTRY_LOCATIONS.set, countryLocation)) {
+            this.errorsAndWarnings.addError("top-10-location", `No globe position is available for ${countryLocation} in the recorder source supplied.`);
+          }
+        }
         isDefinitivelyWorldwide = false;
       }
     }
@@ -967,7 +986,7 @@ export class AutoTTRecConfigImporter {
         top10LocationRegion = "regional";
       } else {
         let potentialTop10LocationRegionalLocation: Top10LocationRegional | undefined;
-        potentialTop10LocationRegionalLocation = TOP_10_LOCATION_REGIONAL_TO_FULL_NAME[top10LocationRegion.toLowerCase()];
+        potentialTop10LocationRegionalLocation = TOP_10_LOCATION_REGIONAL_TO_FULL_NAME[top10Location.toLowerCase()];
         if (potentialTop10LocationRegionalLocation !== undefined) {
           top10LocationRegionalLocation = potentialTop10LocationRegionalLocation;
           top10LocationRegion = "regional";

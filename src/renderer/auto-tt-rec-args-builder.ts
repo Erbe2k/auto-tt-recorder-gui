@@ -137,8 +137,10 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
   if (formData["timeline-category"] === "top10gecko") {
     if (formData["top-10-gecko-code-location-region"] === "worldwide") {
       argsBuilder.addManual("top-10-location", "ww");
-    } else {
+    } else if (formData["top-10-gecko-code-location-region"] === "europe") {
       argsBuilder.addManual("top-10-location", "Europe");
+    } else if (formData["top-10-gecko-code-location-region"] === "country") {
+      argsBuilder.addManual("top-10-location", formData["top-10-location-country-location"]);
     }
   } else if (isOnMKChannel) {
     if (formData["top-10-location-region"] === "worldwide") {

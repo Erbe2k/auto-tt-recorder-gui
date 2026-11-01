@@ -131,7 +131,7 @@ class AutoTTRecConfigFormFieldsSomeFILLMEClass {
   "top-10-gecko-code-unsaved": boolean = false; // internal
   "top-10-highlight-enable": boolean = true; // checkbox
   "top-10-highlight": number = 1; // number
-  "top-10-location-country-location": Top10LocationCountry = "Abkhazia"; // choice
+  "top-10-location-country-location": Top10LocationCountry = "Germany"; // choice
   "top-10-location-region": Top10LocationRegion = "worldwide"; // choice
   "top-10-location-regional-location": Top10LocationRegional = "Europe"; // choice
   "top-10-title": string = ""; // arbitrary
