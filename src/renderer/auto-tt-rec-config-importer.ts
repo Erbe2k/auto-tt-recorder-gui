@@ -40,7 +40,7 @@ import { SET_200CC_VALUES } from "./components/form_components/Set200ccInput";
 
 import { AutoTTRecConfig, StringOrError, BooleanFILLME } from "../shared/shared-types";
 
-import { ReadonlyArraySet } from "../shared/array-set";
+import { ReadonlyArraySet, makeReadonlyArraySet } from "../shared/array-set";
 
 import { isInSet } from "../shared/util-shared";
 
@@ -49,6 +49,8 @@ import { AutoTTRecConfigFormFieldsPartial, AUTO_TT_REC_CONFIG_FORM_FIELD_NAMES, 
 import { AutoTTRecArgName } from "./auto-tt-rec-args-types";
 
 import { AutoTTRecConfigErrorsAndWarnings } from "./auto-tt-rec-errors-and-warnings";
+
+const TOP_10_MULTI_SEQUENCES = makeReadonlyArraySet(["single", "country-regional", "country-regional-worldwide", "regional-worldwide"] as const);
 
 export class AutoTTRecConfigImporter {
   private formData: AutoTTRecConfigFormFieldsPartial;
@@ -412,6 +414,13 @@ export class AutoTTRecConfigImporter {
     await this.importSharedPathnameArg("szs-filename");
     this.importSharedStringArg("top-10-chadsoft");
     this.importSharedStringArg("top-10-gecko-code-filename");
+    await this.importSharedPathnameArg("top-10-country-gecko-code-filename");
+    await this.importSharedPathnameArg("top-10-regional-gecko-code-filename");
+    await this.importSharedPathnameArg("top-10-worldwide-gecko-code-filename");
+    this.importSharedChoiceArg("top-10-multi-sequence", TOP_10_MULTI_SEQUENCES);
+    if (this.formData["top-10-multi-sequence"] === undefined) {
+      this.formData["top-10-multi-sequence"] = "single";
+    }
 
     this.importSharedBooleanArg("fade-in-at-start");
     this.importSharedBooleanArg("hq-textures");
@@ -548,7 +557,10 @@ export class AutoTTRecConfigImporter {
     if (timeline === "top10") {
       let top10Chadsoft = this.getFormDataStringOrChoiceArg_verifyNotUndefined_nullIfWasNull("top-10-chadsoft");
       let top10GeckoCodeFilename = this.getFormDataStringOrChoiceArg_verifyNotUndefined_nullIfWasNull("top-10-gecko-code-filename");
-      if (top10Chadsoft === "" || top10Chadsoft !== null) {
+      const top10MultiSequence = this.formData["top-10-multi-sequence"];
+      if (top10MultiSequence !== "single" && top10MultiSequence !== "<FILLME>" && top10MultiSequence !== undefined) {
+        timelineCategory = "top10gecko";
+      } else if (top10Chadsoft === "" || top10Chadsoft !== null) {
         timelineCategory = "top10chadsoft";
       } else if (top10GeckoCodeFilename === "" || top10GeckoCodeFilename !== null) {
         timelineCategory = "top10gecko";

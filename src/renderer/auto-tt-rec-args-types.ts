@@ -82,6 +82,10 @@ class AutoTTRecArgsClass {
   "top-10-censors"?: string = "";
   "top-10-chadsoft"?: string = "";
   "top-10-gecko-code-filename"?: string = "";
+  "top-10-multi-sequence"?: "single" | "country-regional" | "country-regional-worldwide" | "regional-worldwide" = "single";
+  "top-10-country-gecko-code-filename"?: string = "";
+  "top-10-regional-gecko-code-filename"?: string = "";
+  "top-10-worldwide-gecko-code-filename"?: string = "";
   "top-10-highlight"?: number = 1;
   "top-10-location"?: Top10LocationFull = "worldwide";
   "top-10-title"?: string = "";

@@ -44,7 +44,7 @@ export class AutoTTRecFormDataFormComplexityProcessor {
       this.formData["mk-channel-ghost-description"] = "Ghost Data";
       if (this.formData["timeline-category"] === "top10chadsoft") {
         this.formData["top-10-location-region"] = "worldwide";
-      } else if (this.formData["timeline-category"] === "top10gecko") {
+      } else if (this.formData["timeline-category"] === "top10gecko" && this.formData["top-10-multi-sequence"] === "single") {
         this.formData["top-10-gecko-code-location-region"] = "worldwide";
       }
     }

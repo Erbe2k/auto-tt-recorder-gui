@@ -42,6 +42,8 @@ import { PurgeAutoAdd } from "./components/form_components/PurgeAutoAddInput";
 
 import { Set200cc } from "./components/form_components/Set200ccInput";
 
+export type Top10MultiSequence = "single" | "country-regional" | "country-regional-worldwide" | "regional-worldwide";
+
 import { IfEquals } from "../shared/shared-types";
 
 import { AutoTTRecArgName } from "./auto-tt-rec-args-types";
@@ -129,6 +131,10 @@ class AutoTTRecConfigFormFieldsSomeFILLMEClass {
   "top-10-gecko-code-contents": string = ""; // arbitrary
   "top-10-gecko-code-filename": string = ""; // arbitrary
   "top-10-gecko-code-unsaved": boolean = false; // internal
+  "top-10-multi-sequence": Top10MultiSequence = "single"; // choice
+  "top-10-country-gecko-code-filename": string = ""; // pathname
+  "top-10-regional-gecko-code-filename": string = ""; // pathname
+  "top-10-worldwide-gecko-code-filename": string = ""; // pathname
   "top-10-highlight-enable": boolean = true; // checkbox
   "top-10-highlight": number = 1; // number
   "top-10-location-country-location": Top10LocationCountry = "Germany"; // choice
@@ -234,7 +240,7 @@ export type AutoTTRecConfigFormChoiceArgValue = AutoTTRecConfigFormChoiceArgs[Au
 export type AutoTTRecConfigFormSharedChoiceArgName = AutoTTRecConfigFormChoiceArgName & AutoTTRecArgName;
 
 // A type describing the field names of fields with a pathname type, but not checked that the types are actual string args
-type AutoTTRecConfigFormPathnameArgNameUnvalidated = ("iso-filename" | "extra-gecko-codes-filename" | "top-10-gecko-code-filename" | "extra-hq-textures-folder" | "main-ghost-filename" | "comparison-ghost-filename" | "szs-filename" | "music-filename" | "output-video-filename");
+type AutoTTRecConfigFormPathnameArgNameUnvalidated = ("iso-filename" | "extra-gecko-codes-filename" | "top-10-gecko-code-filename" | "top-10-country-gecko-code-filename" | "top-10-regional-gecko-code-filename" | "top-10-worldwide-gecko-code-filename" | "extra-hq-textures-folder" | "main-ghost-filename" | "comparison-ghost-filename" | "szs-filename" | "music-filename" | "output-video-filename");
 // The above type, but validated to ensure that the specified types are string args in the form data
 export type AutoTTRecConfigFormPathnameArgName = AutoTTRecConfigFormPathnameArgNameUnvalidated extends AutoTTRecConfigFormStringArgName ? AutoTTRecConfigFormPathnameArgNameUnvalidated : never;
 
@@ -328,6 +334,10 @@ export const MINIMAL_FORM_VALUES: AutoTTRecConfigFormMinimalFields = {
   "top-10-gecko-code-contents": "",
   "top-10-gecko-code-filename": "",
   "top-10-gecko-code-unsaved": "<FILLME>",
+  "top-10-multi-sequence": "<FILLME>",
+  "top-10-country-gecko-code-filename": "",
+  "top-10-regional-gecko-code-filename": "",
+  "top-10-worldwide-gecko-code-filename": "",
   "top-10-highlight-enable": "<FILLME>",
   "top-10-highlight": NaN,
   "top-10-location-country-location": "<FILLME>",

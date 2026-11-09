@@ -183,13 +183,37 @@ export class AutoTTRecConfigExporter {
 
   private exportTop10ChadsoftAndGeckoCodeFilename() {
     let timelineCategory = this.getFormDataChoiceValue("timeline-category");
+    let multiSequence = timelineCategory === "top10gecko"
+      ? this.getFormDataChoiceValue("top-10-multi-sequence")
+      : "single";
+    this.exportArg("top-10-multi-sequence", multiSequence);
+
     if (timelineCategory === "top10chadsoft") {
       this.exportSharedStringArg("top-10-chadsoft");
-    } else if (timelineCategory == "top10gecko") {
+      this.exportArg("top-10-gecko-code-filename", null);
+    } else if (timelineCategory === "top10gecko") {
       this.exportArg("top-10-chadsoft", null);
+    } else {
+      this.exportArg("top-10-chadsoft", null);
+      this.exportArg("top-10-gecko-code-filename", null);
     }
 
-    this.exportSharedStringArg("top-10-gecko-code-filename");
+    if (timelineCategory === "top10gecko" && multiSequence !== "single") {
+      this.exportArg("top-10-country-gecko-code-filename", multiSequence === "country-regional" || multiSequence === "country-regional-worldwide"
+        ? this.getFormDataStringValue_reduceFILLMEToNull("top-10-country-gecko-code-filename") : null);
+      this.exportArg("top-10-regional-gecko-code-filename", this.getFormDataStringValue_reduceFILLMEToNull("top-10-regional-gecko-code-filename"));
+      this.exportArg("top-10-worldwide-gecko-code-filename", multiSequence === "country-regional-worldwide" || multiSequence === "regional-worldwide"
+        ? this.getFormDataStringValue_reduceFILLMEToNull("top-10-worldwide-gecko-code-filename") : null);
+    } else if (timelineCategory === "top10gecko") {
+      this.exportSharedStringArg("top-10-gecko-code-filename");
+      this.exportArg("top-10-country-gecko-code-filename", null);
+      this.exportArg("top-10-regional-gecko-code-filename", null);
+      this.exportArg("top-10-worldwide-gecko-code-filename", null);
+    } else {
+      this.exportArg("top-10-country-gecko-code-filename", null);
+      this.exportArg("top-10-regional-gecko-code-filename", null);
+      this.exportArg("top-10-worldwide-gecko-code-filename", null);
+    }
   }
 
   private exportGhostPageAndFilename(isMainGhost: boolean) {

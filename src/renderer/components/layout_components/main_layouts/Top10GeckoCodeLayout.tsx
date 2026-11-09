@@ -43,11 +43,15 @@ import { CRFValueInput } from "../../form_components/CRFValueInput";
 import { GhostAndSZSSourceLayout } from "../sub_layouts/GhostAndSZSSourceLayout";
 import { CustomizationSettingsLayout } from "../sub_layouts/CustomizationSettingsLayout";
 import { FieldsetOr } from "../../reusable_components/FieldsetOr";
+import { useWatchAutoTT } from "../../../use-form-context-auto-tt";
+import { Top10MultipleGeckoCodeInput } from "../../form_components/Top10MultipleGeckoCodeInput";
 
 const TrackNameInput_Memo = memo(TrackNameTypeInput);
 
 export function Top10GeckoCodeLayout(props: {isAutoTTRecRunning: boolean, formComplexity: FormComplexity}) {
   const renderCounter = useRenderCounter(false, "Top10GeckoCodeLayout");
+  const top10MultiSequence = useWatchAutoTT({name: "top-10-multi-sequence"});
+  const isMultipleTop10 = top10MultiSequence !== undefined && top10MultiSequence !== "single" && top10MultiSequence !== "<FILLME>";
 
   return (
     <div>
@@ -55,16 +59,18 @@ export function Top10GeckoCodeLayout(props: {isAutoTTRecRunning: boolean, formCo
 
       <FieldsetOr>
         <legend>Timeline-specific presentation settings</legend>
-        <Top10GeckoCodeInput isAutoTTRecRunning={props.isAutoTTRecRunning}/>
+        <Top10MultipleGeckoCodeInput isAutoTTRecRunning={props.isAutoTTRecRunning}/>
+        {isMultipleTop10 ? null : <Top10GeckoCodeInput isAutoTTRecRunning={props.isAutoTTRecRunning}/>}
         <div className="like-input-group">
           {
             props.formComplexity > FormComplexity.SIMPLE ? <>
               <MKChannelGhostDescriptionInput/>
-              <Top10GeckoCodeLocationInput/>
+              {isMultipleTop10 ? null : <Top10GeckoCodeLocationInput/>}
               <TrackNameInput_Memo formComplexity={props.formComplexity}/>
             </> : <TrackNameInput_Memo formComplexity={props.formComplexity}/>
           }
         </div>
+        {isMultipleTop10 ? <p>Each Top 10 screen uses the globe location of its own Gecko code (country, region or whole globe).</p> : null}
       </FieldsetOr>
 
       <BackgroundMusicSourceInputAndMusicLayout timeline="top10" formComplexity={props.formComplexity}/>

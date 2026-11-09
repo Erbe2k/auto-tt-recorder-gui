@@ -102,7 +102,20 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
       }
     } else if (formData["timeline-category"] === "top10gecko") {
       addMainGhostSourceToAutoTTRecArgs(formData, argsBuilder);
-      argsBuilder.add("top-10-gecko-code-filename");
+      if (formData["top-10-multi-sequence"] === "single") {
+        argsBuilder.add("top-10-gecko-code-filename");
+      } else {
+        argsBuilder.add("top-10-multi-sequence");
+        if ((formData["top-10-multi-sequence"] === "country-regional" || formData["top-10-multi-sequence"] === "country-regional-worldwide") && formData["top-10-country-gecko-code-filename"] !== "") {
+          argsBuilder.add("top-10-country-gecko-code-filename");
+        }
+        if (formData["top-10-regional-gecko-code-filename"] !== "") {
+          argsBuilder.add("top-10-regional-gecko-code-filename");
+        }
+        if ((formData["top-10-multi-sequence"] === "country-regional-worldwide" || formData["top-10-multi-sequence"] === "regional-worldwide") && formData["top-10-worldwide-gecko-code-filename"] !== "") {
+          argsBuilder.add("top-10-worldwide-gecko-code-filename");
+        }
+      }
     }
   }
 
@@ -135,7 +148,9 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
 
   // mkchannel gets top 10 location, while ghostselect, ghostonly, and noencode don't
   if (formData["timeline-category"] === "top10gecko") {
-    if (formData["top-10-gecko-code-location-region"] === "worldwide") {
+    if (formData["top-10-multi-sequence"] !== undefined && formData["top-10-multi-sequence"] !== "single") {
+      // multiple Top 10 screens: every screen uses the globe location of its own Gecko code
+    } else if (formData["top-10-gecko-code-location-region"] === "worldwide") {
       argsBuilder.addManual("top-10-location", "ww");
     } else if (formData["top-10-gecko-code-location-region"] === "europe") {
       argsBuilder.addManual("top-10-location", "Europe");
