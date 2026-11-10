@@ -4,6 +4,7 @@ import "./styles/font.css";
 import "./styles/global.css";
 import "./styles/input-alignment.css";
 import "./styles/input-widths.css";
+import "./styles/theme.css";
 
 import useRenderCounter from "./RenderCounter";
 
@@ -43,7 +44,7 @@ export function App() {
     )
   } else {
     return (
-      <div>
+      <div className="app">
         <GUIHeader/>
         <AutoTTRecManager initialLoadFormInputsType={initialLoadFormInputsType} INITIAL_FORM_DATA={INITIAL_FORM_DATA} validateFormOnOpen={validateFormOnOpen}/>
         {renderCounter}

@@ -5,6 +5,8 @@ import useRenderCounter from "../../RenderCounter";
 import { makeReadonlyArraySet, ValidValues } from "../../../shared/array-set";
 import { DeselectableRadioButton, DeselectableRadioButtonGroup } from "../generic_components/DeselectableRadioButton";
 import { Top10LocationCountryInput } from "./Top10LocationCountryInput";
+import { GlobePositionInput } from "./GlobePositionInput";
+import { GlobeZoomOutInput } from "./GlobeZoomOutInput";
 
 export const TOP_10_GECKO_CODE_LOCATION_REGIONS = makeReadonlyArraySet(["worldwide", "europe", "country"] as const);
 export type Top10GeckoCodeLocationRegion = ValidValues<typeof TOP_10_GECKO_CODE_LOCATION_REGIONS>;
@@ -31,6 +33,12 @@ export function Top10GeckoCodeLocationInput() {
       </div>
       {top10GeckoCodeLocationRegion === "country"
         ? <Top10LocationCountryInput top10LocationRegion="country" geckoCodeLocation={true}/>
+        : ""}
+      {top10GeckoCodeLocationRegion === "country" || top10GeckoCodeLocationRegion === "europe"
+        ? <GlobePositionInput/>
+        : ""}
+      {top10GeckoCodeLocationRegion === "country"
+        ? <GlobeZoomOutInput/>
         : ""}
     </div>
   );

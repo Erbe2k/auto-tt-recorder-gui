@@ -37,7 +37,7 @@ export function FormComplexityLayout(props: {isAutoTTRecRunning: boolean, unrend
         {...register("form-complexity", {onChange: props.validateAndDisplayFormErrorsViaSubmitSync})}
       ></input>
       {renderCounter}
-      <hr style={{height: "2px", borderWidth: 0, color: "gray", backgroundColor: "gray"}}/>
+      <hr className="section-divider"/>
       <TimelineCategoryLayout_Memo isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={formComplexity} unrenderFormToggle={props.unrenderFormToggle} validateAndDisplayFormErrorsViaSubmitSync={props.validateAndDisplayFormErrorsViaSubmitSync}/>
     </div>
   );

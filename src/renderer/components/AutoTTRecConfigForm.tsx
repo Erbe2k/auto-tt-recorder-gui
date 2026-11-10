@@ -1,3 +1,4 @@
+import { ThemeModeSelect } from "./ThemeModeSelect";
 import React, { useState, useRef, ReactNode, useEffect, memo, useMemo, useCallback } from "react";
 
 import { useForm, FormProvider, UseFormRegister, UseFormSetValue, FieldValues, FormProviderProps, UseFormReturn } from "react-hook-form";
@@ -319,19 +320,26 @@ export function AutoTTRecConfigForm(
 
   return (
     <div>
-      <form onSubmit={formMethods.handleSubmit(onSubmit, onError)}>
-        <LoadFormInputsTypeSelect disabled={props.isAutoTTRecRunning} initialValue={props.initialLoadFormInputsType}/>
-        <br/>
-        <strong>Other program settings:</strong>
-        <ValidateFormOnOpen disabled={props.isAutoTTRecRunning} initialValue={props.validateFormOnOpen}/>
-        <ExpandUnselectedChoiceInputs_Memo disabled={props.isAutoTTRecRunning} formMethods={formMethods} validateAndDisplayFormErrorsViaSubmitSync={validateAndDisplayFormErrorsViaSubmitSync}/>
-  <br/>
-        <ImportTemplate_Memo disabled={props.isAutoTTRecRunning} formMethods={formMethods} setUnrenderFormToggle={setUnrenderFormToggle} onError={onError}/>
-        <ClearAllFields_Memo disabled={props.isAutoTTRecRunning} formMethods={formMethods} setUnrenderFormToggle={setUnrenderFormToggle}/>
-        <fieldset disabled={props.isAutoTTRecRunning}>
+      <form className="recorder-form" onSubmit={formMethods.handleSubmit(onSubmit, onError)}>
+        <div className="settings-panel">
+          <div className="settings-panel__options">
+            <LoadFormInputsTypeSelect disabled={props.isAutoTTRecRunning} initialValue={props.initialLoadFormInputsType}/>
+            <strong className="settings-panel__heading">Other program settings:</strong>
+            <ValidateFormOnOpen disabled={props.isAutoTTRecRunning} initialValue={props.validateFormOnOpen}/>
+            <ExpandUnselectedChoiceInputs_Memo disabled={props.isAutoTTRecRunning} formMethods={formMethods} validateAndDisplayFormErrorsViaSubmitSync={validateAndDisplayFormErrorsViaSubmitSync}/>
+            <ThemeModeSelect disabled={props.isAutoTTRecRunning}/>
+          </div>
+          <div className="settings-panel__buttons">
+            <ImportTemplate_Memo disabled={props.isAutoTTRecRunning} formMethods={formMethods} setUnrenderFormToggle={setUnrenderFormToggle} onError={onError}/>
+            <ClearAllFields_Memo disabled={props.isAutoTTRecRunning} formMethods={formMethods} setUnrenderFormToggle={setUnrenderFormToggle}/>
+          </div>
+        </div>
+        <fieldset className="main-form" disabled={props.isAutoTTRecRunning}>
           <AutoTTRecConfigFormComponents_Memo formMethods={formMethods} forceUpdate={forceUpdateToggle} unrenderFormToggle={unrenderFormToggle} isAutoTTRecRunning={props.isAutoTTRecRunning} initialValidateFormOnOpen={props.validateFormOnOpen} validateAndDisplayFormErrorsViaSubmitSync={validateAndDisplayFormErrorsViaSubmitSync}/>
         </fieldset>
-        <AutoTTRecSubmitAbortButtons_Memo isAutoTTRecRunning={props.isAutoTTRecRunning} onAbortCallback={props.onAbortCallback} setRunAutoTTRecOnSubmitCallback={(() => {}) as any}/>
+        <div className="action-bar">
+          <AutoTTRecSubmitAbortButtons_Memo isAutoTTRecRunning={props.isAutoTTRecRunning} onAbortCallback={props.onAbortCallback} setRunAutoTTRecOnSubmitCallback={(() => {}) as any}/>
+        </div>
       </form>
       {renderCounter}
     </div>

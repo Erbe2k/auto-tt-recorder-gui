@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App.tsx';
 import { Sandbox } from "./Sandbox.tsx";
 import "./window-api";
+import { applyThemeMode, getInitialThemeMode } from "./theme-mode";
+
+applyThemeMode(getInitialThemeMode());
 import Modal from 'react-modal';
 
 console.log(document.getElementById('root'));

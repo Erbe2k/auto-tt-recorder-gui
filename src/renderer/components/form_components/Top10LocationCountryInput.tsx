@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { isValueOrFILLMEIsValueMaker } from "../../use-form-context-auto-tt";
+import { isValueOrFILLMEIsValueMaker, useWatchAutoTT } from "../../use-form-context-auto-tt";
 import { Top10LocationRegion } from "./Top10LocationInput";
 import { DeselectableDropdown } from "../generic_components/DeselectableDropdown";
 
@@ -315,21 +315,27 @@ export const TOP_10_GECKO_CODE_LOCATION_COUNTRIES = makeReadonlyArraySet(GECKO_C
 export type Top10LocationCountry = ValidValues<typeof COUNTRY_LOCATIONS>;
 export type Top10LocationCountryFlagId = ValidValues<typeof COUNTRY_FLAG_IDS>;
 
-export function Top10LocationCountryInput(props: {top10LocationRegion: Top10LocationRegion, geckoCodeLocation?: boolean}) {
+export function Top10LocationCountryInput(props: {top10LocationRegion: Top10LocationRegion, geckoCodeLocation?: boolean, label?: string}) {
   const isValueOrFILLMEIsValue = isValueOrFILLMEIsValueMaker();
   const countryLocations = props.geckoCodeLocation ? GECKO_CODE_COUNTRY_LOCATIONS : COUNTRY_LOCATIONS_NO_FILLME;
+  const globePosition = useWatchAutoTT({name: "top-10-globe-position"});
+  // with Gecko codes, a filled "Globe centre" replaces the country's position
+  const overriddenByGlobeCentre = props.geckoCodeLocation === true && typeof globePosition === "string" && globePosition.trim() !== "";
 
   return (
     <div className="grid-contents">
-      <label className="start-label" htmlFor="top-10-location-country-location">
-        {props.geckoCodeLocation ? "Country with known globe position: " : "Country Location: "}
+      <label className={"start-label" + (overriddenByGlobeCentre ? " is-overridden" : "")} htmlFor="top-10-location-country-location">
+        {props.label !== undefined ? props.label : props.geckoCodeLocation ? "Country with known globe position: " : "Country Location: "}
       </label>
       <div className="start-label-contents">
-        <DeselectableDropdown name="top-10-location-country-location" nameAsId={true} errorBelow={true}>
-          {countryLocations.map((countryLocation) => (
-            <option value={countryLocation} key={countryLocation}>{countryLocation}</option>
-          ))}
-        </DeselectableDropdown>
+        <div className={overriddenByGlobeCentre ? "is-overridden" : undefined} title={overriddenByGlobeCentre ? "Not used: the Globe centre coordinates are used instead." : undefined}>
+          <DeselectableDropdown name="top-10-location-country-location" nameAsId={true} errorBelow={true}>
+            {countryLocations.map((countryLocation) => (
+              <option value={countryLocation} key={countryLocation}>{countryLocation}</option>
+            ))}
+          </DeselectableDropdown>
+        </div>
+        {overriddenByGlobeCentre ? <span className="overridden-note">Not used: the camera is centred on the Globe centre coordinates.</span> : null}
       </div>
     </div>
   );

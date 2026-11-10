@@ -4,6 +4,10 @@ import { FileFilter } from "electron";
 import { useFormContextAutoTT, useWatchAutoTT } from "../../use-form-context-auto-tt";
 import { AutoTTRecConfigFormPathnameArgName } from "../../auto-tt-rec-form-field-types";
 import { SimpleErrorMessage } from "../reusable_components/SimpleErrorMessage";
+import { Top10LocationCountryInput } from "./Top10LocationCountryInput";
+import { GlobePositionInput } from "./GlobePositionInput";
+import { GlobeZoomOutInput } from "./GlobeZoomOutInput";
+
 
 type Top10MultiSequence = "single" | "country-regional" | "country-regional-worldwide" | "regional-worldwide";
 type MultiTop10CodeFilename =
@@ -112,14 +116,21 @@ export function Top10MultipleGeckoCodeInput(props: {isAutoTTRecRunning: boolean}
       </div>
       {sequence === "country-regional-worldwide" ? <>
         {renderCodeFile("top-10-country-gecko-code-filename", "Country")}
+        <Top10LocationCountryInput top10LocationRegion="country" geckoCodeLocation={true} label="Country shown on the globe: "/>
+        <GlobePositionInput/>
+        <GlobeZoomOutInput/>
         {renderCodeFile("top-10-regional-gecko-code-filename", "Regional")}
         {renderCodeFile("top-10-worldwide-gecko-code-filename", "Worldwide")}
       </> : sequence === "country-regional" ? <>
         {renderCodeFile("top-10-country-gecko-code-filename", "Country")}
+        <Top10LocationCountryInput top10LocationRegion="country" geckoCodeLocation={true} label="Country shown on the globe: "/>
+        <GlobePositionInput/>
+        <GlobeZoomOutInput/>
         {renderCodeFile("top-10-regional-gecko-code-filename", "Regional")}
       </> : sequence === "regional-worldwide" ? <>
         {renderCodeFile("top-10-regional-gecko-code-filename", "Regional")}
         {renderCodeFile("top-10-worldwide-gecko-code-filename", "Worldwide")}
+        <GlobePositionInput/>
       </> : null}
     </>
   );

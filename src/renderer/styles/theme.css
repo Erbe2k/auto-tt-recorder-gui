@@ -1,0 +1,508 @@
+/* ==========================================================================
+   Auto-TT-Recorder GUI theme: Wii / Mario Kart Channel look.
+   Light and night mode: <html data-theme="light|night">, chosen in the
+   program settings (theme-mode.ts).
+   ========================================================================== */
+
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --font-ui: "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-round: "Arial Rounded MT Bold", "Segoe UI Semibold", "Segoe UI", Arial, sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
+
+  --wii-blue: #34beed;
+  --wii-blue-dark: #0e93c6;
+  --wii-blue-pale: #e3f6fd;
+
+  --page: #e9e9e9;
+  --page-line: #e2e2e2;
+  --panel: #ffffff;
+  --panel-inner: #fafafa;
+  --panel-border: #cfcfcf;
+  --line: #dadada;
+  --text: #3c3c3c;
+  --text-soft: #6e6e6e;
+  --title: #5a5a5a;
+
+  --button-top: #ffffff;
+  --button-bottom: #ececec;
+  --button-border: #bdbdbd;
+  --button-text: #4a4a4a;
+
+  --input-bg: #ffffff;
+  --input-border: #c4c4c4;
+  --input-disabled: #f0f0f0;
+
+  --warning-bg: #fff6c8;
+  --warning-text: #6b5300;
+
+  --status-bg: #fbfbfb;
+  --status-text: #333333;
+}
+
+:root[data-theme="night"] {
+  color-scheme: dark;
+
+  --wii-blue: #3fc4f1;
+  --wii-blue-dark: #7fd8f7;
+  --wii-blue-pale: #173341;
+
+  --page: #16191e;
+  --page-line: #1a1e24;
+  --panel: #20242b;
+  --panel-inner: #1b1f25;
+  --panel-border: #343a44;
+  --line: #2d333c;
+  --text: #dfe3e8;
+  --text-soft: #a2a9b4;
+  --title: #e8ebef;
+
+  --button-top: #2c323b;
+  --button-bottom: #252a32;
+  --button-border: #444c58;
+  --button-text: #e3e6ea;
+
+  --input-bg: #15181d;
+  --input-border: #444c58;
+  --input-disabled: #1c2026;
+
+  --warning-bg: #3d3412;
+  --warning-text: #ffe27a;
+
+  --status-bg: #121519;
+  --status-text: #d4d9df;
+}
+
+/* ---------------------------------------------------------------- page */
+
+html {
+  background: var(--page);
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  /* the thin horizontal lines of the Wii Menu background */
+  background-color: var(--page);
+  background-image: repeating-linear-gradient(to bottom, var(--page) 0px, var(--page) 3px, var(--page-line) 3px, var(--page-line) 4px);
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px 24px;
+}
+
+a {
+  color: var(--wii-blue-dark);
+}
+
+label {
+  font-size: 14px;
+}
+
+code,
+.markdown-inline-code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--panel-inner);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+/* ---------------------------------------------------------------- channel header */
+
+.channel-header {
+  /* full window width, content aligned with the form */
+  margin: 0 calc(50% - 50vw) 14px;
+  padding: 14px calc(50vw - 50% + 0px) 0;
+  background: var(--panel);
+  border-bottom: 3px solid var(--wii-blue);
+}
+
+.channel-header__title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.channel-header .title-header {
+  margin: 0 0 10px;
+  font-family: var(--font-round);
+  font-size: 22px;
+  font-weight: normal;
+  color: var(--title);
+  letter-spacing: 0.3px;
+}
+
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 0 -6px;
+}
+
+.app .section-nav__item {
+  margin: 0;
+  padding: 7px 12px 9px;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-round);
+  font-size: 13.5px;
+  font-weight: normal;
+  color: var(--text-soft);
+}
+
+.app .section-nav__item:hover:not(:disabled) {
+  background: var(--wii-blue-pale);
+  color: var(--wii-blue-dark);
+  border: none;
+}
+
+.section-nav__star {
+  margin-right: 5px;
+  color: #f2b705;
+}
+
+.channel-notes {
+  margin: 4px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.channel-notes > summary {
+  cursor: pointer;
+  padding: 8px 0;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.channel-notes .auto-tt-rec-notes {
+  padding-bottom: 10px;
+}
+
+.auto-tt-rec-notes {
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------------------- program settings */
+
+.settings-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 24px;
+  margin-bottom: 14px;
+  padding: 12px 16px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  border-radius: 14px;
+}
+
+.settings-panel__options > div {
+  margin: 2px 0;
+}
+
+.settings-panel__heading {
+  display: block;
+  margin-top: 10px;
+}
+
+.settings-panel__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.settings-panel__buttons > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.theme-mode-select > label:first-child {
+  margin-right: 4px;
+}
+
+/* ---------------------------------------------------------------- form */
+
+.app fieldset.main-form {
+  margin: 0;
+  padding: 14px 18px 8px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  border-radius: 14px;
+  min-width: 0;
+}
+
+.app fieldset.main-form fieldset {
+  margin: 16px 0 10px;
+  padding: 8px 14px 12px;
+  background: var(--panel-inner);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.app fieldset legend {
+  padding: 0 8px;
+  font-family: var(--font-round);
+  font-size: 15px;
+  font-weight: normal;
+  color: var(--wii-blue-dark);
+}
+
+.app hr.section-divider {
+  height: 0;
+  border: none;
+  border-top: 2px solid var(--line);
+  margin: 12px 0;
+}
+
+.app fieldset:disabled {
+  opacity: 0.8;
+}
+
+.like-input-group {
+  row-gap: 6px;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.form-input-notes,
+.form-input-notes--start-label {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* ---------------------------------------------------------------- inputs */
+
+input[type="text"],
+input[type="number"],
+input:not([type]),
+select,
+textarea {
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 8px;
+  padding: 3px 7px;
+  box-sizing: content-box;
+}
+
+select {
+  padding: 3px 2px 3px 5px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--wii-blue);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: var(--input-disabled);
+  color: var(--text-soft);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--wii-blue);
+  width: 15px;
+  height: 15px;
+  vertical-align: -3px;
+}
+
+input[type="range"] {
+  accent-color: var(--wii-blue);
+  vertical-align: middle;
+}
+
+/* ---------------------------------------------------------------- buttons (Wii style) */
+
+button {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--button-text);
+  background: linear-gradient(to bottom, var(--button-top), var(--button-bottom));
+  border: 2px solid var(--button-border);
+  border-radius: 10px;
+  padding: 4px 13px;
+  margin: 2px 4px 2px 0;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--wii-blue);
+  color: var(--wii-blue-dark);
+}
+
+button:active:not(:disabled) {
+  background: var(--button-bottom);
+}
+
+button:focus-visible {
+  outline: none;
+  border-color: var(--wii-blue);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ---------------------------------------------------------------- record bar */
+
+.action-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin: 14px calc(50% - 50vw) 0;
+  padding: 10px calc(50vw - 50%);
+  background: var(--panel);
+  border-top: 3px solid var(--wii-blue);
+}
+
+.action-bar__buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn {
+  font-family: var(--font-round);
+  font-size: 15px;
+  font-weight: normal;
+  padding: 7px 26px;
+  border-radius: 14px;
+}
+
+.btn--record {
+  min-width: 160px;
+  color: #ffffff;
+  background: linear-gradient(to bottom, #5fd0f5, var(--wii-blue) 55%, #22a9db);
+  border-color: #1d9fd0;
+}
+
+.btn--record:hover:not(:disabled) {
+  color: #ffffff;
+  border-color: #0f7fae;
+}
+
+/* ---------------------------------------------------------------- status */
+
+.status-panel {
+  margin-top: 14px;
+}
+
+.status-panel__header {
+  margin: 0 0 6px;
+  font-family: var(--font-round);
+  font-size: 18px;
+  font-weight: normal;
+  color: var(--title);
+}
+
+.app .status-textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 170px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--status-text);
+  background: var(--status-bg);
+  border: 2px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+
+/* ---------------------------------------------------------------- messages */
+
+.error-message__text-contents {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--warning-text);
+  background: var(--warning-bg);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+/* ---------------------------------------------------------------- dialogs (rendered outside .app) */
+
+body .extra-gecko-codes-save-modal,
+body .top-10-gecko-code-save-modal {
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+body .extra-gecko-codes-save-modal-contents,
+body .top-10-gecko-code-save-modal-contents {
+  color: var(--text);
+  background: var(--panel);
+  border: 3px solid var(--wii-blue);
+  border-radius: 16px;
+  padding: 20px 22px;
+}
+
+body .import-template-modal-textarea,
+body #top-10-gecko-code-contents {
+  font-family: var(--font-mono);
+}
+
+/* ---------------------------------------------------------------- multiple Top 10 */
+
+.top-10-multiple-toggle label[for="top-10-multiple-enabled"] input {
+  margin: 0 6px 0 0;
+}
+
+.top-10-multiple-sequence-choice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.start-label-contents > input[type="text"][readonly] {
+  min-width: 300px;
+  background: var(--input-disabled);
+}
+
+.like-input-group + .form-input-notes {
+  margin-top: 10px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ---------------------------------------------------------------- country replaced by the globe centre */
+
+.is-overridden {
+  opacity: 0.45;
+}
+
+div.is-overridden {
+  display: inline-block;
+  pointer-events: none;
+}
+
+.overridden-note {
+  margin-left: 8px;
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--text-soft);
+}

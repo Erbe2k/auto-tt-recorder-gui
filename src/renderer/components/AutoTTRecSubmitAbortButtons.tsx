@@ -11,12 +11,12 @@ function AutoTTRecSubmitAbortButtons(props: {
 
   // disabled={this.state.isAutoTTRecRunning}
   return (
-    <div>
-      <button type="submit" onClick={() => {
+    <div className="action-bar__buttons">
+      <button type="submit" className="btn btn--record" onClick={() => {
         console.log("onClick in submit button");
         props.setRunAutoTTRecOnSubmitCallback();
       }} disabled={props.isAutoTTRecRunning}>Record!</button>
-      <button type="button" disabled={!props.isAutoTTRecRunning} onClick={props.onAbortCallback}>Abort</button>
+      <button type="button" className="btn btn--abort" disabled={!props.isAutoTTRecRunning} onClick={props.onAbortCallback}>Abort</button>
       {renderCounter}
     </div>
   );

@@ -445,6 +445,8 @@ export class AutoTTRecConfigImporter {
 
     this.importSharedStringArg("chadsoft-cache-expiry");
     this.importSharedStringArg("top-10-censors");
+    this.importSharedStringArg("top-10-globe-position");
+    this.importSharedStringArg("top-10-globe-zoom-out");
     this.importSharedBooleanArg("ignore-auto-add-missing-files");
     this.importSharedChoiceArg("purge-auto-add", PURGE_AUTO_ADD_VALUES);
     this.importSharedStringArg("ending-message");

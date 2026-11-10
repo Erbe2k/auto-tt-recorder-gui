@@ -43,7 +43,7 @@ export function NoTop10CategoryLayout(props: {
       }
       </DeselectableRadioButtonGroup>
       {renderCounter}
-      <hr style={{height: "2px", borderWidth: 0, color: "gray", backgroundColor: "gray"}}/>
+      <hr className="section-divider"/>
       {
         props.noTop10Category === "mkchannel" ? <MarioKartChannelLayout isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={props.formComplexity}/> :
           props.noTop10Category === "ghostselect" ? <GhostSelectLayout isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={props.formComplexity}/> :

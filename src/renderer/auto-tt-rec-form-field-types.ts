@@ -135,6 +135,8 @@ class AutoTTRecConfigFormFieldsSomeFILLMEClass {
   "top-10-country-gecko-code-filename": string = ""; // pathname
   "top-10-regional-gecko-code-filename": string = ""; // pathname
   "top-10-worldwide-gecko-code-filename": string = ""; // pathname
+  "top-10-globe-position": string = ""; // arbitrary
+  "top-10-globe-zoom-out": string = ""; // arbitrary
   "top-10-highlight-enable": boolean = true; // checkbox
   "top-10-highlight": number = 1; // number
   "top-10-location-country-location": Top10LocationCountry = "Germany"; // choice
@@ -338,6 +340,8 @@ export const MINIMAL_FORM_VALUES: AutoTTRecConfigFormMinimalFields = {
   "top-10-country-gecko-code-filename": "",
   "top-10-regional-gecko-code-filename": "",
   "top-10-worldwide-gecko-code-filename": "",
+  "top-10-globe-position": "",
+  "top-10-globe-zoom-out": "",
   "top-10-highlight-enable": "<FILLME>",
   "top-10-highlight": NaN,
   "top-10-location-country-location": "<FILLME>",

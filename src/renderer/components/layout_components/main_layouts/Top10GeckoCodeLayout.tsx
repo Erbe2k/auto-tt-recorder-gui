@@ -59,7 +59,9 @@ export function Top10GeckoCodeLayout(props: {isAutoTTRecRunning: boolean, formCo
 
       <FieldsetOr>
         <legend>Timeline-specific presentation settings</legend>
-        <Top10MultipleGeckoCodeInput isAutoTTRecRunning={props.isAutoTTRecRunning}/>
+        <div className="like-input-group">
+          <Top10MultipleGeckoCodeInput isAutoTTRecRunning={props.isAutoTTRecRunning}/>
+        </div>
         {isMultipleTop10 ? null : <Top10GeckoCodeInput isAutoTTRecRunning={props.isAutoTTRecRunning}/>}
         <div className="like-input-group">
           {
@@ -70,7 +72,7 @@ export function Top10GeckoCodeLayout(props: {isAutoTTRecRunning: boolean, formCo
             </> : <TrackNameInput_Memo formComplexity={props.formComplexity}/>
           }
         </div>
-        {isMultipleTop10 ? <p>Each Top 10 screen uses the globe location of its own Gecko code (country, region or whole globe).</p> : null}
+        {isMultipleTop10 ? <p className="form-input-notes">All Top 10 screens are recorded in one Dolphin session. The country Top 10 shows the chosen country, the regional Top 10 the continent map and the worldwide Top 10 the whole globe.</p> : null}
       </FieldsetOr>
 
       <BackgroundMusicSourceInputAndMusicLayout timeline="top10" formComplexity={props.formComplexity}/>

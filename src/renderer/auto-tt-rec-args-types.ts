@@ -84,6 +84,8 @@ class AutoTTRecArgsClass {
   "top-10-gecko-code-filename"?: string = "";
   "top-10-multi-sequence"?: "single" | "country-regional" | "country-regional-worldwide" | "regional-worldwide" = "single";
   "top-10-country-gecko-code-filename"?: string = "";
+  "top-10-globe-position"?: string = "";
+  "top-10-globe-zoom-out"?: string = "";
   "top-10-regional-gecko-code-filename"?: string = "";
   "top-10-worldwide-gecko-code-filename"?: string = "";
   "top-10-highlight"?: number = 1;

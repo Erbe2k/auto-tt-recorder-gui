@@ -48,7 +48,7 @@ export function TimelineCategoryLayout(props: {
         <DeselectableRadioButton labelValue="Top 10 from Gecko Code: " id="timeline-category-top-10-manual" value="top10gecko"/>
       </DeselectableRadioButtonGroup>
       {renderCounter}
-      <hr style={{height: "2px", borderWidth: 0, color: "gray", backgroundColor: "gray"}}/>
+      <hr className="section-divider"/>
       {
         !props.unrenderFormToggle ? (
           timelineCategory === "notop10" ? <NoTop10CategoryLayout isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={props.formComplexity} noTop10Category={noTop10Category} validateAndDisplayFormErrorsViaSubmitSync={props.validateAndDisplayFormErrorsViaSubmitSync}/>

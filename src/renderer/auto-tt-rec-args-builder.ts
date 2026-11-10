@@ -149,13 +149,32 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
   // mkchannel gets top 10 location, while ghostselect, ghostonly, and noencode don't
   if (formData["timeline-category"] === "top10gecko") {
     if (formData["top-10-multi-sequence"] !== undefined && formData["top-10-multi-sequence"] !== "single") {
-      // multiple Top 10 screens: every screen uses the globe location of its own Gecko code
+      // multiple Top 10 screens: the country screen shows the chosen country,
+      // the other screens use the globe location of their own Gecko code
+      if ((formData["top-10-multi-sequence"] === "country-regional" || formData["top-10-multi-sequence"] === "country-regional-worldwide")
+        && typeof formData["top-10-location-country-location"] === "string"
+        && (formData["top-10-location-country-location"] as string) !== ""
+        && (formData["top-10-location-country-location"] as string) !== "<FILLME>") {
+        argsBuilder.addManual("top-10-location", formData["top-10-location-country-location"]);
+      }
     } else if (formData["top-10-gecko-code-location-region"] === "worldwide") {
       argsBuilder.addManual("top-10-location", "ww");
     } else if (formData["top-10-gecko-code-location-region"] === "europe") {
       argsBuilder.addManual("top-10-location", "Europe");
     } else if (formData["top-10-gecko-code-location-region"] === "country") {
       argsBuilder.addManual("top-10-location", formData["top-10-location-country-location"]);
+    }
+    // manual globe centre (multiple Top 10 screens, or a single one on Europe / a country)
+    const usesGlobePosition = (formData["top-10-multi-sequence"] !== undefined && formData["top-10-multi-sequence"] !== "single")
+      || formData["top-10-gecko-code-location-region"] === "europe" || formData["top-10-gecko-code-location-region"] === "country";
+    if (usesGlobePosition && typeof formData["top-10-globe-position"] === "string" && formData["top-10-globe-position"].trim() !== "") {
+      argsBuilder.addManual("top-10-globe-position", formData["top-10-globe-position"].trim());
+    }
+    // zoom-out of the country view (multiple Top 10 with a country screen, or a single one on a country)
+    const showsCountryView = formData["top-10-multi-sequence"] === "country-regional" || formData["top-10-multi-sequence"] === "country-regional-worldwide"
+      || ((formData["top-10-multi-sequence"] === undefined || formData["top-10-multi-sequence"] === "single") && formData["top-10-gecko-code-location-region"] === "country");
+    if (showsCountryView && typeof formData["top-10-globe-zoom-out"] === "string" && formData["top-10-globe-zoom-out"].trim() !== "" && Number(formData["top-10-globe-zoom-out"]) !== 0) {
+      argsBuilder.addManual("top-10-globe-zoom-out", formData["top-10-globe-zoom-out"].trim());
     }
   } else if (isOnMKChannel) {
     if (formData["top-10-location-region"] === "worldwide") {
