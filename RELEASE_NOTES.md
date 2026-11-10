@@ -69,12 +69,6 @@ The previous behaviour (one Dolphin session per Top 10, joined afterwards) is st
 top-10-multi-sequence-transition: separate
 ```
 
-## New interface
-
-| Before | Light | Night |
-|---|---|---|
-| ![](docs/screenshots/gui-before.png) | ![](docs/screenshots/gui-light.png) | ![](docs/screenshots/gui-night.png) |
-
 A look inspired by the Wii Menu and the Mario Kart Channel:
 
 - **Background:** light grey with thin horizontal lines, like the Wii Menu.
