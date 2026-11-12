@@ -9,6 +9,7 @@ import { NoBackgroundBlurInput } from "../../form_components/NoBackgroundBlurInp
 import { NoBloomInput } from "../../form_components/NoBloomInput";
 import { CRFValueInput } from "../../form_components/CRFValueInput";
 import { FieldsetOr } from "../../reusable_components/FieldsetOr";
+import { EncodeCPUUsageInput } from "../../form_components/EncodeCPUUsageInput";
 
 export function QualitySettingsLayout(props: {formComplexity: FormComplexity, isNoEncode: boolean}) {
   return <div>
@@ -24,6 +25,7 @@ export function QualitySettingsLayout(props: {formComplexity: FormComplexity, is
             <NoBloomInput/>
           </> : <DolphinResolutionInput enableOutputWidth={false} formComplexity={props.formComplexity}/>
         }
+        {!props.isNoEncode ? <EncodeCPUUsageInput/> : ""}
       </div>
     </FieldsetOr>
   </div>

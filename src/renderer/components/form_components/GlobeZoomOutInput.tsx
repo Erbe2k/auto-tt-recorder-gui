@@ -24,7 +24,7 @@ export function GlobeZoomOutInput() {
         <div className="start-label"></div>
         <div className="start-label-contents">
           <p className="form-input-notes">
-            Moves the camera further from the country: 0 or empty = game default, 100 = as far as the continent view. Try 20 to 40 for a small zoom-out. PAL discs only.
+            Moves the camera further from the country: 0 or empty = game default, 100 = as far as the continent view. Try 20 to 40 for a small zoom-out. PAL and NTSC-U discs only.
           </p>
         </div>
       </div>

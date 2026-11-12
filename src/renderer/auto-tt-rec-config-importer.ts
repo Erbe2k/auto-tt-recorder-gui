@@ -1,4 +1,5 @@
 
+import { ENCODE_CPU_USAGES } from "./components/form_components/EncodeCPUUsageInput";
 import { EncodeSizeUnit } from "./components/form_components/EncodeSizeInput";
 
 import { SZSSource } from "./components/form_components/SZSSourceInput";
@@ -428,6 +429,8 @@ export class AutoTTRecConfigImporter {
     this.importSharedBooleanArg("keep-window");
     this.importSharedBooleanArg("no-background-blur");
     this.importSharedBooleanArg("no-bloom");
+    this.importSharedChoiceArg("encode-cpu-usage", ENCODE_CPU_USAGES);
+    this.importSharedBooleanArg("encode-low-priority");
     this.importSharedBooleanArg("no-music");
     this.importSharedBooleanArg("use-ffv1");
     this.importSharedBooleanArg("youtube-settings");
@@ -915,8 +918,9 @@ export class AutoTTRecConfigImporter {
       if (top10LocationLower === "ww" || top10LocationLower === "worldwide") {
         top10GeckoCodeLocationRegion = "worldwide";
         isDefinitivelyWorldwide = true;
-      } else if (top10LocationLower === "regional" || top10LocationLower === "europe" || top10LocationLower === "eu") {
-        top10GeckoCodeLocationRegion = "europe";
+      } else if (top10LocationLower === "regional" || TOP_10_LOCATION_REGIONAL_TO_FULL_NAME[top10LocationLower] !== undefined) {
+        // a region (older templates wrote "Europe")
+        top10GeckoCodeLocationRegion = "regional";
         isDefinitivelyWorldwide = false;
       } else if (top10LocationLower === "country") {
         top10GeckoCodeLocationRegion = "country";
@@ -931,7 +935,7 @@ export class AutoTTRecConfigImporter {
         if (isInSet(TOP_10_GECKO_CODE_LOCATION_COUNTRIES.set, countryLocation)) {
           top10GeckoCodeLocationRegion = "country";
         } else {
-          top10GeckoCodeLocationRegion = "europe";
+          top10GeckoCodeLocationRegion = "regional";
           if (isInSet(COUNTRY_LOCATIONS.set, countryLocation)) {
             this.errorsAndWarnings.addError("top-10-location", `No globe position is available for ${countryLocation} in the recorder source supplied.`);
           }

@@ -159,14 +159,14 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
       }
     } else if (formData["top-10-gecko-code-location-region"] === "worldwide") {
       argsBuilder.addManual("top-10-location", "ww");
-    } else if (formData["top-10-gecko-code-location-region"] === "europe") {
-      argsBuilder.addManual("top-10-location", "Europe");
+    } else if (formData["top-10-gecko-code-location-region"] === "regional") {
+      argsBuilder.addManual("top-10-location", formData["top-10-location-regional-location"]);
     } else if (formData["top-10-gecko-code-location-region"] === "country") {
       argsBuilder.addManual("top-10-location", formData["top-10-location-country-location"]);
     }
-    // manual globe centre (multiple Top 10 screens, or a single one on Europe / a country)
+    // manual globe centre (multiple Top 10 screens, or a single one on a region / a country)
     const usesGlobePosition = (formData["top-10-multi-sequence"] !== undefined && formData["top-10-multi-sequence"] !== "single")
-      || formData["top-10-gecko-code-location-region"] === "europe" || formData["top-10-gecko-code-location-region"] === "country";
+      || formData["top-10-gecko-code-location-region"] === "regional" || formData["top-10-gecko-code-location-region"] === "country";
     if (usesGlobePosition && typeof formData["top-10-globe-position"] === "string" && formData["top-10-globe-position"].trim() !== "") {
       argsBuilder.addManual("top-10-globe-position", formData["top-10-globe-position"].trim());
     }
@@ -231,6 +231,11 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
   }
   argsBuilder.add("no-background-blur");
   argsBuilder.add("no-bloom");
+  // how much of the CPU the encoding (ffmpeg) may use
+  if (formData["encode-cpu-usage"] === "75" || formData["encode-cpu-usage"] === "50" || formData["encode-cpu-usage"] === "25") {
+    argsBuilder.addManual("encode-cpu-usage", formData["encode-cpu-usage"]);
+  }
+  argsBuilder.add("encode-low-priority");
 
   if (!isNoEncode) {
     argsBuilder.add("encode-type");

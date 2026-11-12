@@ -169,6 +169,8 @@ export class AutoTTRecConfigExporter {
     this.exportSharedStringArg("mk-channel-ghost-description");
     this.exportSharedBooleanArg("no-background-blur");
     this.exportSharedBooleanArg("no-bloom");
+    this.exportSharedChoiceArg("encode-cpu-usage");
+    this.exportSharedBooleanArg("encode-low-priority");
     this.exportSharedBooleanArg("no-music");
     this.exportSharedStringArg("pixel-format");
     this.exportSharedChoiceArg("speedometer-metric");
@@ -438,8 +440,8 @@ export class AutoTTRecConfigExporter {
       let top10GeckoCodeLocationRegion = this.getFormDataChoiceValue("top-10-gecko-code-location-region");
       if (top10GeckoCodeLocationRegion === "worldwide") {
         top10Location = "worldwide";
-      } else if (top10GeckoCodeLocationRegion === "europe") {
-        top10Location = "Europe";
+      } else if (top10GeckoCodeLocationRegion === "regional") {
+        top10Location = top10LocationRegionalLocation === "<FILLME>" ? "regional" : top10LocationRegionalLocation;
       } else if (top10GeckoCodeLocationRegion === "country") {
         top10Location = top10LocationCountryLocation === "<FILLME>" ? "country" : top10LocationCountryLocation;
       } else {

@@ -1,4 +1,5 @@
 
+import { EncodeCPUUsage } from "./components/form_components/EncodeCPUUsageInput";
 import { COUNTRY_LOCATIONS } from "./components/form_components/Top10LocationCountryInput";
 import { REGIONAL_LOCATIONS } from "./components/form_components/Top10LocationRegionalInput";
 
@@ -62,6 +63,8 @@ class AutoTTRecArgsClass {
   "music-volume"?: number = 1.0;
   "no-background-blur"?: boolean = true;
   "no-bloom"?: boolean = false;
+  "encode-cpu-usage"?: EncodeCPUUsage = "all";
+  "encode-low-priority"?: boolean = false;
   "no-music"?: boolean = false;
   "no-music-mkchannel"?: boolean = false;
   "on-200cc"?: boolean = false;

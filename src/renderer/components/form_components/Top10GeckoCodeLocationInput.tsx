@@ -5,10 +5,11 @@ import useRenderCounter from "../../RenderCounter";
 import { makeReadonlyArraySet, ValidValues } from "../../../shared/array-set";
 import { DeselectableRadioButton, DeselectableRadioButtonGroup } from "../generic_components/DeselectableRadioButton";
 import { Top10LocationCountryInput } from "./Top10LocationCountryInput";
+import { Top10LocationRegionalInput } from "./Top10LocationRegionalInput";
 import { GlobePositionInput } from "./GlobePositionInput";
 import { GlobeZoomOutInput } from "./GlobeZoomOutInput";
 
-export const TOP_10_GECKO_CODE_LOCATION_REGIONS = makeReadonlyArraySet(["worldwide", "europe", "country"] as const);
+export const TOP_10_GECKO_CODE_LOCATION_REGIONS = makeReadonlyArraySet(["worldwide", "regional", "country"] as const);
 export type Top10GeckoCodeLocationRegion = ValidValues<typeof TOP_10_GECKO_CODE_LOCATION_REGIONS>;
 
 export function Top10GeckoCodeLocationInput() {
@@ -26,15 +27,18 @@ export function Top10GeckoCodeLocationInput() {
       <div className="start-label-contents">
         <DeselectableRadioButtonGroup name="top-10-gecko-code-location-region" errorBelow={true} onChange={updateTop10GeckoCodeLocationRegion}>
           <DeselectableRadioButton labelValue="Worldwide:" id="top-10-gecko-code-location-region-ww" value="worldwide"/>
-          <DeselectableRadioButton labelValue="Europe:" id="top-10-gecko-code-location-region-europe" value="europe"/>
+          <DeselectableRadioButton labelValue="Regional:" id="top-10-gecko-code-location-region-regional" value="regional"/>
           <DeselectableRadioButton labelValue="Country:" id="top-10-gecko-code-location-region-country" value="country"/>
         </DeselectableRadioButtonGroup>
         {renderCounter}
       </div>
+      {top10GeckoCodeLocationRegion === "regional"
+        ? <Top10LocationRegionalInput top10LocationRegion="regional"/>
+        : ""}
       {top10GeckoCodeLocationRegion === "country"
         ? <Top10LocationCountryInput top10LocationRegion="country" geckoCodeLocation={true}/>
         : ""}
-      {top10GeckoCodeLocationRegion === "country" || top10GeckoCodeLocationRegion === "europe"
+      {top10GeckoCodeLocationRegion === "country" || top10GeckoCodeLocationRegion === "regional"
         ? <GlobePositionInput/>
         : ""}
       {top10GeckoCodeLocationRegion === "country"

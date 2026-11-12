@@ -1,4 +1,5 @@
 
+import { EncodeCPUUsage } from "./components/form_components/EncodeCPUUsageInput";
 import { EncodeSizeUnit } from "./components/form_components/EncodeSizeInput";
 
 import { MainGhostSource } from "./components/form_components/MainGhostSourceInput";
@@ -110,6 +111,8 @@ class AutoTTRecConfigFormFieldsSomeFILLMEClass {
   "music-volume-slider": number = 100; // number
   "no-background-blur": boolean = true; // checkbox
   "no-bloom": boolean = false; // checkbox
+  "encode-cpu-usage": EncodeCPUUsage = "all";
+  "encode-low-priority": boolean = true; // checkbox
   "no-music": boolean = false; // checkbox
   "no-top-10-category": NoTop10Category = "mkchannel"; // choice
   "output-video-filename": string = DEBUG_PREFILLED_DEFAULTS ? "C:\\Users\\User\\Documents\\RMCE 01\\guitest1.mp4" : ""; // arbitrary
@@ -315,6 +318,8 @@ export const MINIMAL_FORM_VALUES: AutoTTRecConfigFormMinimalFields = {
   "music-volume-slider": NaN,
   "no-background-blur": "<FILLME>",
   "no-bloom": "<FILLME>",
+  "encode-cpu-usage": "<FILLME>",
+  "encode-low-priority": "<FILLME>",
   "no-music": "<FILLME>",
   "no-top-10-category": "<FILLME>",
   "output-video-filename": "",
