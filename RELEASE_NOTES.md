@@ -112,9 +112,7 @@ Every multiple Top 10 recording writes a step-by-step log to `...\auto-tt-record
 | `auto-tt-recorder_v1.3.11_for_gui/bin/record_ghost/record_ghost.exe` | Backend: builds the multiple Top 10 session (only the `record_ghost` module inside the PyInstaller archive was replaced) |
 | `auto-tt-recorder_v1.3.11_for_gui/dolphin/Sys/Scripts/_MKW_Play_Ghost.lua` | Recording script: drives the Top 10 transitions in Dolphin |
 | `package.json`, `package-lock.json` | GUI version 1.4.2 |
-| `dist/main/main.js`, `dist/renderer/js/main.js` (+ `.map`) | Rebuilt GUI |
 | `src/renderer/...` | GUI source (see `source_multi_top10/gui_changes.patch`) |
-| `source_multi_top10/` | Full `record_ghost.py`, patches, PowerPC assembly and its build script |
 
 ## Technical details
 
