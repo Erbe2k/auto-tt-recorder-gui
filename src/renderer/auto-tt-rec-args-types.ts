@@ -1,5 +1,6 @@
 
 import { EncodeCPUUsage } from "./components/form_components/EncodeCPUUsageInput";
+import { RunType } from "./components/form_components/RunTypeInput";
 import { COUNTRY_LOCATIONS } from "./components/form_components/Top10LocationCountryInput";
 import { REGIONAL_LOCATIONS } from "./components/form_components/Top10LocationRegionalInput";
 
@@ -64,6 +65,8 @@ class AutoTTRecArgsClass {
   "no-background-blur"?: boolean = true;
   "no-bloom"?: boolean = false;
   "encode-cpu-usage"?: EncodeCPUUsage = "all";
+  "run-type"?: RunType = "normal";
+  "flap-fade-in"?: boolean = false;
   "encode-low-priority"?: boolean = false;
   "no-music"?: boolean = false;
   "no-music-mkchannel"?: boolean = false;

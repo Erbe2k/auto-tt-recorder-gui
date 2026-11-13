@@ -33,6 +33,14 @@ export function TimelineCategoryLayout(props: {
   const timelineCategory = useWatchAutoTT({name: "timeline-category"});
   const renderCounter = useRenderCounter(false, "TimelineCategoryInput");
   let noTop10Category = useWatchAutoTT({name: "no-top-10-category"});
+  const isFlapRun = useWatchAutoTT({name: "run-type"}) === "flap";
+
+  // a flap run needs a Top 10 with lap times: only a Gecko code can give that
+  useEffect(() => {
+    if (isFlapRun && timelineCategory === "top10chadsoft") {
+      setValue("timeline-category", "top10gecko", {shouldTouch: true});
+    }
+  }, [isFlapRun, timelineCategory]);
 
   let shouldAdjustToGhostonly = doesNoTop10CategoryNeedsToAdjustToGhostonly(props.formComplexity, timelineCategory, noTop10Category);
   if (shouldAdjustToGhostonly) {
@@ -44,15 +52,16 @@ export function TimelineCategoryLayout(props: {
     <div>
       <DeselectableRadioButtonGroup name="timeline-category" notDeselectable={true} onChange={props.validateAndDisplayFormErrorsViaSubmitSync}>
         <DeselectableRadioButton labelValue="No Top 10:" id="timeline-category-no-top-10" value="notop10"/>
-        <DeselectableRadioButton labelValue="Top 10 from Chadsoft: " id="timeline-category-top-10" value="top10chadsoft"/>
+        {!isFlapRun ? <DeselectableRadioButton labelValue="Top 10 from Chadsoft: " id="timeline-category-top-10" value="top10chadsoft"/> : ""}
         <DeselectableRadioButton labelValue="Top 10 from Gecko Code: " id="timeline-category-top-10-manual" value="top10gecko"/>
       </DeselectableRadioButtonGroup>
+      {isFlapRun ? <p className="form-input-notes flap-top10-note">Flap run: a Top 10 can only come from a Gecko code, made with lap times (e.g. on tt-rec.com). A Chadsoft Top 10 lists race times.</p> : ""}
       {renderCounter}
       <hr className="section-divider"/>
       {
         !props.unrenderFormToggle ? (
           timelineCategory === "notop10" ? <NoTop10CategoryLayout isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={props.formComplexity} noTop10Category={noTop10Category} validateAndDisplayFormErrorsViaSubmitSync={props.validateAndDisplayFormErrorsViaSubmitSync}/>
-          : timelineCategory === "top10chadsoft" ? <Top10ChadsoftLayout isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={props.formComplexity}/>
+          : timelineCategory === "top10chadsoft" && !isFlapRun ? <Top10ChadsoftLayout isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={props.formComplexity}/>
           : timelineCategory === "top10gecko" ? <Top10GeckoCodeLayout isAutoTTRecRunning={props.isAutoTTRecRunning} formComplexity={props.formComplexity}/>
           : ""
         ) : ""

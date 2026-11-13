@@ -1,5 +1,6 @@
 
 import { EncodeCPUUsage } from "./components/form_components/EncodeCPUUsageInput";
+import { RunType } from "./components/form_components/RunTypeInput";
 import { EncodeSizeUnit } from "./components/form_components/EncodeSizeInput";
 
 import { MainGhostSource } from "./components/form_components/MainGhostSourceInput";
@@ -112,6 +113,8 @@ class AutoTTRecConfigFormFieldsSomeFILLMEClass {
   "no-background-blur": boolean = true; // checkbox
   "no-bloom": boolean = false; // checkbox
   "encode-cpu-usage": EncodeCPUUsage = "all";
+  "run-type": RunType = "normal"; // choice
+  "flap-fade-in": boolean = false; // checkbox
   "encode-low-priority": boolean = true; // checkbox
   "no-music": boolean = false; // checkbox
   "no-top-10-category": NoTop10Category = "mkchannel"; // choice
@@ -319,6 +322,8 @@ export const MINIMAL_FORM_VALUES: AutoTTRecConfigFormMinimalFields = {
   "no-background-blur": "<FILLME>",
   "no-bloom": "<FILLME>",
   "encode-cpu-usage": "<FILLME>",
+  "run-type": "<FILLME>",
+  "flap-fade-in": "<FILLME>",
   "encode-low-priority": "<FILLME>",
   "no-music": "<FILLME>",
   "no-top-10-category": "<FILLME>",

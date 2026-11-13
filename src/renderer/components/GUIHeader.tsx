@@ -19,6 +19,11 @@ export function GUIHeader() {
           </ul>
           <h3 className="troubleshooting-header">New in {versions.AUTO_TT_RECORDER_GUI_VERSION}:</h3>
           <ul className="auto-tt-rec-troubleshooting">
+            <li>Flap run: record the ghost's fastest lap (Run type, at the top of the form). The video starts 3 seconds before the lap (as usual for lap 1), then dissolves into the finish line, and the ghost screen shows the lap time.</li>
+            <li>The recording script in the GUI's working folder is updated automatically before every recording.</li>
+          </ul>
+          <h3 className="troubleshooting-header">New in v1.4.2:</h3>
+          <ul className="auto-tt-rec-troubleshooting">
             <li>Multiple Top 10 screens in one video (Country → Regional, Regional → Worldwide, Country → Regional → Worldwide), all in the same Dolphin session.</li>
             <li>Globe location for a Top 10 Gecko code: Worldwide, Regional (pick the region) or Country.</li>
             <li>Globe centre (latitude, longitude) and country view zoom-out to fix or adjust the camera.</li>

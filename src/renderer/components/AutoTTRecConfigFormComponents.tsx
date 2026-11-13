@@ -5,6 +5,7 @@ import "../styles/components/AutoTTRecConfigFormComponents.css";
 import { useFormContextAutoTT } from "../use-form-context-auto-tt";
 
 import { ISOWBFSFileInput } from "./form_components/ISOWBFSFileInput";
+import { RunTypeInput } from "./form_components/RunTypeInput";
 import { FormComplexityLayout } from "./layout_components/FormComplexityLayout";
 
 import { FormProvider, UseFormReturn } from "react-hook-form";
@@ -44,6 +45,7 @@ export function AutoTTRecConfigFormComponents(props: {
       <FormProvider {...props.formMethods}>
         <input type="hidden" {...props.formMethods.register("expand-unselected-choice-inputs")}/>
         <input type="hidden" {...props.formMethods.register("is-submitting")}/>
+        <RunTypeInput/>
         <ISOWBFSFileInput_Memo/>
         <FormComplexityLayout_Memo isAutoTTRecRunning={props.isAutoTTRecRunning} unrenderFormToggle={props.unrenderFormToggle} validateAndDisplayFormErrorsViaSubmitSync={props.validateAndDisplayFormErrorsViaSubmitSync}/>
         {renderCounter}

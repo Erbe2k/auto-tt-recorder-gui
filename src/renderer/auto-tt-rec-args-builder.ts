@@ -236,6 +236,11 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
     argsBuilder.addManual("encode-cpu-usage", formData["encode-cpu-usage"]);
   }
   argsBuilder.add("encode-low-priority");
+  // flap run: record the fastest lap only
+  if (formData["run-type"] === "flap") {
+    argsBuilder.addManual("run-type", "flap");
+    argsBuilder.add("flap-fade-in");
+  }
 
   if (!isNoEncode) {
     argsBuilder.add("encode-type");

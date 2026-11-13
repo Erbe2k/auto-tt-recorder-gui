@@ -506,3 +506,33 @@ div.is-overridden {
   font-style: italic;
   color: var(--text-soft);
 }
+
+/* ---------------------------------------------------------------- run type (normal / flap) */
+
+.run-type {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  background: var(--wii-blue-pale);
+  border: 2px solid var(--wii-blue);
+  border-radius: 12px;
+}
+
+.run-type__label {
+  font-family: var(--font-round);
+  color: var(--title);
+}
+
+.run-type__note {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--text-soft);
+  max-width: 760px;
+}
+
+.ending-delay__input {
+  display: inline-block;
+}
+
+.run-type__option {
+  margin-top: 6px;
+}

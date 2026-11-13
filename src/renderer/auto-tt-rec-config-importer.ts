@@ -1,5 +1,6 @@
 
 import { ENCODE_CPU_USAGES } from "./components/form_components/EncodeCPUUsageInput";
+import { RUN_TYPES } from "./components/form_components/RunTypeInput";
 import { EncodeSizeUnit } from "./components/form_components/EncodeSizeInput";
 
 import { SZSSource } from "./components/form_components/SZSSourceInput";
@@ -430,6 +431,8 @@ export class AutoTTRecConfigImporter {
     this.importSharedBooleanArg("no-background-blur");
     this.importSharedBooleanArg("no-bloom");
     this.importSharedChoiceArg("encode-cpu-usage", ENCODE_CPU_USAGES);
+    this.importSharedChoiceArg("run-type", RUN_TYPES);
+    this.importSharedBooleanArg("flap-fade-in");
     this.importSharedBooleanArg("encode-low-priority");
     this.importSharedBooleanArg("no-music");
     this.importSharedBooleanArg("use-ffv1");

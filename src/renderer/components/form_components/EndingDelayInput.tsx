@@ -10,6 +10,7 @@ export function EndingDelayInput() {
     <div className="grid-contents">
       <label className="start-label" htmlFor="ending-delay">Ending video delay:</label>
       <div className="start-label-contents">
+        <div className="ending-delay__input">
         <input type="number" id="ending-delay" placeholder="600"
           {...register("ending-delay", {valueAsNumber: true, required: {
             value: true,
@@ -20,6 +21,7 @@ export function EndingDelayInput() {
           })}
         ></input>
         <span id="ending-delay__in-frames"> frames</span>
+        </div>
       </div>
       <div className="start-label"></div>
       <div className="start-label-contents">

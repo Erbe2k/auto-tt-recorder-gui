@@ -170,6 +170,8 @@ export class AutoTTRecConfigExporter {
     this.exportSharedBooleanArg("no-background-blur");
     this.exportSharedBooleanArg("no-bloom");
     this.exportSharedChoiceArg("encode-cpu-usage");
+    this.exportSharedChoiceArg("run-type");
+    this.exportSharedBooleanArg("flap-fade-in");
     this.exportSharedBooleanArg("encode-low-priority");
     this.exportSharedBooleanArg("no-music");
     this.exportSharedStringArg("pixel-format");
