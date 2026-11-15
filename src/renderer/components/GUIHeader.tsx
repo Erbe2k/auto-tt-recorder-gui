@@ -20,6 +20,7 @@ export function GUIHeader() {
           <h3 className="troubleshooting-header">New in {versions.AUTO_TT_RECORDER_GUI_VERSION}:</h3>
           <ul className="auto-tt-rec-troubleshooting">
             <li>Flap run: record the ghost's fastest lap (Run type, at the top of the form). The video starts 3 seconds before the lap (as usual for lap 1), then dissolves into the finish line, and the ghost screen shows the lap time.</li>
+            <li>Input display: a drawn style like Ghost Input Display (line width, outline width, colours), custom layout folders, size, position and Hide input box (under Input Display).</li>
             <li>The recording script in the GUI's working folder is updated automatically before every recording.</li>
           </ul>
           <h3 className="troubleshooting-header">New in v1.4.2:</h3>

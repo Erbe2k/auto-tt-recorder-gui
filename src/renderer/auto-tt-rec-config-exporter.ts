@@ -172,6 +172,16 @@ export class AutoTTRecConfigExporter {
     this.exportSharedChoiceArg("encode-cpu-usage");
     this.exportSharedChoiceArg("run-type");
     this.exportSharedBooleanArg("flap-fade-in");
+    this.exportSharedChoiceArg("input-display-style");
+    this.exportSharedStringArg("input-display-layout-classic");
+    this.exportSharedStringArg("input-display-layout-nunchuck");
+    this.exportSharedBooleanArg("input-display-hide-box");
+    this.exportSharedStringArg("input-display-size");
+    this.exportSharedStringArg("input-display-position");
+    this.exportSharedStringArg("input-display-line-width");
+    this.exportSharedStringArg("input-display-outline-width");
+    this.exportSharedStringArg("input-display-button-colour");
+    this.exportSharedStringArg("input-display-outline-colour");
     this.exportSharedBooleanArg("encode-low-priority");
     this.exportSharedBooleanArg("no-music");
     this.exportSharedStringArg("pixel-format");

@@ -1,6 +1,7 @@
 
 import { EncodeCPUUsage } from "./components/form_components/EncodeCPUUsageInput";
 import { RunType } from "./components/form_components/RunTypeInput";
+import { InputDisplayStyle } from "./components/form_components/InputDisplayOptionsInput";
 import { COUNTRY_LOCATIONS } from "./components/form_components/Top10LocationCountryInput";
 import { REGIONAL_LOCATIONS } from "./components/form_components/Top10LocationRegionalInput";
 
@@ -67,6 +68,16 @@ class AutoTTRecArgsClass {
   "encode-cpu-usage"?: EncodeCPUUsage = "all";
   "run-type"?: RunType = "normal";
   "flap-fade-in"?: boolean = false;
+  "input-display-style"?: InputDisplayStyle = "layout";
+  "input-display-layout-classic"?: string = "";
+  "input-display-layout-nunchuck"?: string = "";
+  "input-display-hide-box"?: boolean = false;
+  "input-display-size"?: string = "";
+  "input-display-position"?: string = "";
+  "input-display-line-width"?: string = "5";
+  "input-display-outline-width"?: string = "4";
+  "input-display-button-colour"?: string = "#ffffff";
+  "input-display-outline-colour"?: string = "#000000";
   "encode-low-priority"?: boolean = false;
   "no-music"?: boolean = false;
   "no-music-mkchannel"?: boolean = false;

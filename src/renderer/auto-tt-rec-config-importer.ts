@@ -1,6 +1,7 @@
 
 import { ENCODE_CPU_USAGES } from "./components/form_components/EncodeCPUUsageInput";
 import { RUN_TYPES } from "./components/form_components/RunTypeInput";
+import { INPUT_DISPLAY_STYLES } from "./components/form_components/InputDisplayOptionsInput";
 import { EncodeSizeUnit } from "./components/form_components/EncodeSizeInput";
 
 import { SZSSource } from "./components/form_components/SZSSourceInput";
@@ -433,6 +434,16 @@ export class AutoTTRecConfigImporter {
     this.importSharedChoiceArg("encode-cpu-usage", ENCODE_CPU_USAGES);
     this.importSharedChoiceArg("run-type", RUN_TYPES);
     this.importSharedBooleanArg("flap-fade-in");
+    this.importSharedChoiceArg("input-display-style", INPUT_DISPLAY_STYLES);
+    this.importSharedStringArg("input-display-layout-classic");
+    this.importSharedStringArg("input-display-layout-nunchuck");
+    this.importSharedBooleanArg("input-display-hide-box");
+    this.importSharedStringArg("input-display-size");
+    this.importSharedStringArg("input-display-position");
+    this.importSharedStringArg("input-display-line-width");
+    this.importSharedStringArg("input-display-outline-width");
+    this.importSharedStringArg("input-display-button-colour");
+    this.importSharedStringArg("input-display-outline-colour");
     this.importSharedBooleanArg("encode-low-priority");
     this.importSharedBooleanArg("no-music");
     this.importSharedBooleanArg("use-ffv1");

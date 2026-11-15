@@ -45,6 +45,7 @@ export interface SavedDialogPathnames {
   "rkgs": string,
   "extra-gecko-codes": string,
   "extra-hq-textures": string,
+  "input-display-layout": string,
   "output-video": string,
   "szs": string,
   "top-10-gecko-code": string,

@@ -1,6 +1,7 @@
 
 import { EncodeCPUUsage } from "./components/form_components/EncodeCPUUsageInput";
 import { RunType } from "./components/form_components/RunTypeInput";
+import { InputDisplayStyle } from "./components/form_components/InputDisplayOptionsInput";
 import { EncodeSizeUnit } from "./components/form_components/EncodeSizeInput";
 
 import { MainGhostSource } from "./components/form_components/MainGhostSourceInput";
@@ -115,6 +116,16 @@ class AutoTTRecConfigFormFieldsSomeFILLMEClass {
   "encode-cpu-usage": EncodeCPUUsage = "all";
   "run-type": RunType = "normal"; // choice
   "flap-fade-in": boolean = false; // checkbox
+  "input-display-style": InputDisplayStyle = "layout"; // choice
+  "input-display-layout-classic": string = ""; // arbitrary
+  "input-display-layout-nunchuck": string = ""; // arbitrary
+  "input-display-hide-box": boolean = false; // checkbox
+  "input-display-size": string = ""; // arbitrary
+  "input-display-position": string = ""; // arbitrary
+  "input-display-line-width": string = "5"; // arbitrary
+  "input-display-outline-width": string = "4"; // arbitrary
+  "input-display-button-colour": string = "#ffffff"; // arbitrary
+  "input-display-outline-colour": string = "#000000"; // arbitrary
   "encode-low-priority": boolean = true; // checkbox
   "no-music": boolean = false; // checkbox
   "no-top-10-category": NoTop10Category = "mkchannel"; // choice
@@ -324,6 +335,16 @@ export const MINIMAL_FORM_VALUES: AutoTTRecConfigFormMinimalFields = {
   "encode-cpu-usage": "<FILLME>",
   "run-type": "<FILLME>",
   "flap-fade-in": "<FILLME>",
+  "input-display-style": "<FILLME>",
+  "input-display-layout-classic": "",
+  "input-display-layout-nunchuck": "",
+  "input-display-hide-box": "<FILLME>",
+  "input-display-size": "",
+  "input-display-position": "",
+  "input-display-line-width": "",
+  "input-display-outline-width": "",
+  "input-display-button-colour": "#ffffff",
+  "input-display-outline-colour": "#000000",
   "encode-low-priority": "<FILLME>",
   "no-music": "<FILLME>",
   "no-top-10-category": "<FILLME>",

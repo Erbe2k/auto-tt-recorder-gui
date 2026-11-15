@@ -69,6 +69,7 @@ export class Config {
         "rkgs": "",
         "extra-gecko-codes": "",
         "extra-hq-textures": "",
+        "input-display-layout": "",
         "output-video": "",
         "szs": "",
         "top-10-gecko-code": "",

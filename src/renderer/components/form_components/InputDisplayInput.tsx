@@ -1,5 +1,6 @@
 import React from "react";
-import { useFormContextAutoTT } from "../../use-form-context-auto-tt";
+import { useFormContextAutoTT, useWatchAutoTT } from "../../use-form-context-auto-tt";
+import { InputDisplayOptionsInput } from "./InputDisplayOptionsInput";
 import { makeReadonlyArraySet, ValidValues } from "../../../shared/array-set";
 import { DeselectableRadioButton, DeselectableRadioButtonGroup } from "../generic_components/DeselectableRadioButton";
 
@@ -7,8 +8,11 @@ export const INPUT_DISPLAYS = makeReadonlyArraySet(["auto", "gcn", "nunchuck", "
 export type InputDisplay = ValidValues<typeof INPUT_DISPLAYS>;
 
 export function InputDisplayInput() {
+  const inputDisplay = useWatchAutoTT({name: "input-display"});
+  const hasInputDisplay = inputDisplay === "auto" || inputDisplay === "gcn" || inputDisplay === "nunchuck";
 
   return (
+    <>
     <div className="grid-contents">
       <label className="start-label">Input Display: </label>
       <div className="start-label-contents">
@@ -20,5 +24,7 @@ export function InputDisplayInput() {
         </DeselectableRadioButtonGroup>
       </div>
     </div>
+    {hasInputDisplay ? <InputDisplayOptionsInput/> : ""}
+    </>
   );
 }

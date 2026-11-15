@@ -203,6 +203,7 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
       addMusicPresentationToAutoTTRecArgs(formData, argsBuilder);
     }
     argsBuilder.add("input-display");
+    addInputDisplayOptionsToAutoTTRecArgs(formData, argsBuilder);
     argsBuilder.add("aspect-ratio-16-by-9");
   } else {
     argsBuilder.add("no-music");
@@ -293,4 +294,40 @@ export function convertFormDataToAutoTTRecArgs(formData: AutoTTRecConfigFormFiel
   
 
   return argsBuilder.autoTTRecArgs;
+}
+
+// input display style, custom layout folders, size, position and box
+function addInputDisplayOptionsToAutoTTRecArgs(formData: AutoTTRecConfigFormFieldsNoFILLME, argsBuilder: AutoTTRecArgsBuilder) {
+  const inputDisplay = formData["input-display"];
+  if (inputDisplay !== "auto" && inputDisplay !== "gcn" && inputDisplay !== "nunchuck") {
+    return;
+  }
+  const trimmed = (value: unknown) => typeof value === "string" ? value.trim() : "";
+  if (formData["input-display-style"] === "drawn") {
+    argsBuilder.addManual("input-display-style", "drawn");
+    if (trimmed(formData["input-display-line-width"]) !== "") {
+      argsBuilder.addManual("input-display-line-width", trimmed(formData["input-display-line-width"]));
+    }
+    if (trimmed(formData["input-display-outline-width"]) !== "") {
+      argsBuilder.addManual("input-display-outline-width", trimmed(formData["input-display-outline-width"]));
+    }
+    argsBuilder.addManual("input-display-button-colour", trimmed(formData["input-display-button-colour"]) || "#ffffff");
+    argsBuilder.addManual("input-display-outline-colour", trimmed(formData["input-display-outline-colour"]) || "#000000");
+  } else {
+    if (trimmed(formData["input-display-layout-classic"]) !== "") {
+      argsBuilder.addManual("input-display-layout-classic", trimmed(formData["input-display-layout-classic"]));
+    }
+    if (trimmed(formData["input-display-layout-nunchuck"]) !== "") {
+      argsBuilder.addManual("input-display-layout-nunchuck", trimmed(formData["input-display-layout-nunchuck"]));
+    }
+  }
+  if (trimmed(formData["input-display-size"]) !== "") {
+    argsBuilder.addManual("input-display-size", trimmed(formData["input-display-size"]));
+  }
+  if (trimmed(formData["input-display-position"]) !== "") {
+    argsBuilder.addManual("input-display-position", trimmed(formData["input-display-position"]));
+  }
+  if (formData["input-display-hide-box"] === true) {
+    argsBuilder.add("input-display-hide-box");
+  }
 }

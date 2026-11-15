@@ -536,3 +536,10 @@ div.is-overridden {
 .run-type__option {
   margin-top: 6px;
 }
+
+.input-display-colour {
+  width: 48px;
+  height: 26px;
+  padding: 0 2px;
+  cursor: pointer;
+}
